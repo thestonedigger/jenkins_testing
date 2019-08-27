@@ -56,9 +56,25 @@ i=5
 echo "The $i-th file was ${file[$i]} with ${lines[$i]} lines"'''
       }
     }
-    stage('error') {
+    stage('Wait for input') {
       steps {
         input 'Waiting for User input'
+      }
+    }
+    stage('Sleep (10s)') {
+      steps {
+        echo 'Waiting for 10 seconds'
+        sleep 10
+      }
+    }
+    stage('Write to File') {
+      steps {
+        writeFile(file: 'test_writing_file', text: 'If this shows up, the test worked')
+      }
+    }
+    stage('Final int. input') {
+      steps {
+        input 'Did everything proceed smoothly?'
       }
     }
   }
