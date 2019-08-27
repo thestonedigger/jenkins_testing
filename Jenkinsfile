@@ -77,5 +77,16 @@ echo "The $i-th file was ${file[$i]} with ${lines[$i]} lines"'''
         input 'Did everything proceed smoothly?'
       }
     }
+    stage('') {
+      steps {
+        retry(count: 5) {
+          waitUntil() {
+            input 'Continue?'
+          }
+
+        }
+
+      }
+    }
   }
 }
